@@ -1,0 +1,11 @@
+.shift{
+padding: 10px;
+border: #062322 1px solid;
+border-radius: 5px;
+background-color: #D2EFEE;
+margin:10px;
+}
+
+.shift:hover {
+  background-color: #20B2AA
+}

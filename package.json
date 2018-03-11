@@ -1,0 +1,35 @@
+{
+  "name": "roster",
+  "version": "1.0.0",
+  "description": "Roster for Dan",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "build": "browserify -t hbsfy ./public/javascript/client.js -o ./public/bundle.js -dv",
+    "watch": "watchify -t hbsfy ./public/javascript/client.js -o ./public/bundle.js -dv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wishmouse/Roster.git"
+  },
+  "author": "Heidi Goosen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wishmouse/Roster/issues"
+  },
+  "homepage": "https://github.com/wishmouse/Roster#readme",
+  "dependencies": {
+    "browserify": "^16.1.1",
+    "consolidate": "^0.15.0",
+    "express": "^4.16.2",
+    "handlebars": "^4.0.11",
+    "hbsfy": "^2.8.1",
+    "jquery": "^3.3.1",
+    "mongodb": "^2.2.33",
+    "nodemon": "^1.17.1",
+    "npm": "^5.7.1",
+    "superagent": "^3.8.2",
+    "swig": "^1.4.2",
+    "watchify": "^3.11.0"
+  }
+}

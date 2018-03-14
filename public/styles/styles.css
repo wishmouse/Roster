@@ -9,3 +9,15 @@ margin:10px;
 .shift:hover {
   background-color: #20B2AA
 }
+
+.table-date{
+    margin: auto;
+    width: 24%;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.show-shifts{
+    border: 1px solid;
+    background: #D2EFEE;
+}

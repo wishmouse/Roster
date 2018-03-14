@@ -9,9 +9,11 @@ var moment = require('moment');
          shift = $(this).html()
          time = $(this).attr('value')
          date = $('#date').val()
-         console.log(shift)
-         console.log('time', time)
-         console.log('date',date)
+         dateEpoch = new Date(date).valueOf()
+         console.log('dateEpoch', dateEpoch)
+         //console.log(shift)
+         //console.log('time', time)
+         //console.log('date',date)
 
            $.ajax({
                   method: "POST",
@@ -19,14 +21,15 @@ var moment = require('moment');
                   data: {
                       shift:shift,
                       time:time,
-                      date:date
+                      date:date,
+                      dateEpoch:dateEpoch
                     }
                })
 
        })
 
 var today = new Date();
-var yesterday = today.setDate(today.getDate() - 1)
+var epochEndDate = today.setDate(today.getDate() + 2)
 var formattedDate
 
 $.ajax({
@@ -34,43 +37,45 @@ $.ajax({
            success: function(result){
              getData = JSON.parse(result)
              for(var i=0; i<getData.length; i++) {
-               var dataReturn= getData[i]
-               var date = dataReturn.date
+                dataReturn= getData[i]
+               var dataDate = dataReturn.date
+               var epochDataDate = dataReturn.dateEpoch
+               var epochTodaysDate = new Date().valueOf()
                currentDate()
+               console.log('epochEndDate', epochEndDate)
+              console.log('epochDataDate', epochDataDate)
+               //console.log('dataDate', dataDate)
+               //console.log('formattedTodaysDate', formattedTodaysDate)
+               console.log('epochTodaysDate', epochTodaysDate)
 
-
-              if(date == formattedDate ){
-                 console.log('line 40')
-                 
+               if(epochTodaysDate < epochEndDate && epochDataDate >= epochTodaysDate){
+                    console.log('dataReturn', dataReturn)
+                    showShifts()
                }
              }
            }
          })
 
+
+
          function currentDate(){
                  var day = moment().format("DD")
                  var month = moment().format("MM")
                  var year = moment().format("YYYY")
-                 formattedDate = year+"-"+month+"-"+day
+                 formattedTodaysDate = year+"-"+month+"-"+day
                }
 
 
-/*
-          function hearthTile(){
-            $('.delete-tile-table').remove()
-            var editTemplate = ""+
-                "<tr class='delete-tile-table'>"+
-                  "<td class='delete-tile-button w3-padding w3-xlarge fa fa-trash'></td>"+
-                  "<td class='table-description'>"+ "Tile colour: "+"</td>" +
-                  "<td class='table-description-comment'><input id='colour-comment' class='colour-comment' placeholder='Colour?'/>"+"</td>" +
-                  "<td class='table-quantity'>"+'1'+"</td>" +
-                  "<td class='table-price' unit-price='"+hearthTileText+"'><input type='text' name='hearth-colour-price-text' class='excl-price' id='hearth-colour-price-text' value="+hearthTileText+"></input></td>" +
-                  "<td class='table-vat' id='hearth-colour-vat-text'>0</td>" +
-                  "<td class='table-total' id='hearth-colour-total-text'></td>" +
-                "</tr>"
-            quoteLine.append(editTemplate)
+
+          function showShifts(){
+            var showShifts = ""+
+                "<div class='show-shifts'>"+
+                  "<div class='table-date'>"+dataReturn.date+"</div>" +
+                  "<div class='table-shift'>"+ dataReturn.shift+"</div>" +
+                  "<div class='table-time'>"+dataReturn.time+"</div>" +
+                "</div>"
+            $('#shift-results').append(showShifts)
           }
 
-*/
 
  }) // end doc.ready

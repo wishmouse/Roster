@@ -26,7 +26,6 @@ app.get('/', function(req, res){
 
 app.post('/shifts', function(req, res){
   inputDatashifts =  req.body //returns object
-  console.log('inputDatashifts::',inputDatashifts)
   var MongoClient = mongodb.MongoClient
   var url = "mongodb://localhost:27017/shifts"
   MongoClient.connect(url, function(err, db){
@@ -47,7 +46,7 @@ app.post('/shifts', function(req, res){
     }
   })
 })
-/*
+
 app.get('/shifts',  function(req, res){
   var MongoClient = mongodb.MongoClient
   var url = "mongodb://localhost:27017/shifts"
@@ -72,7 +71,8 @@ app.get('/shifts',  function(req, res){
     }
   })
 })
-*/
+
+
 app.listen(3000, function(){
   console.log("Danny boi  .... 3000")
 })

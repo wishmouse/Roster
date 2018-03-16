@@ -42,14 +42,17 @@ $.ajax({
                var epochDataDate = dataReturn.dateEpoch
                var epochTodaysDate = new Date().valueOf()
                currentDate()
-               console.log('epochEndDate', epochEndDate)
-              console.log('epochDataDate', epochDataDate)
+              // console.log('epochEndDate', epochEndDate)
+              //console.log('epochDataDate', epochDataDate)
                //console.log('dataDate', dataDate)
                //console.log('formattedTodaysDate', formattedTodaysDate)
                console.log('epochTodaysDate', epochTodaysDate)
 
                if(epochTodaysDate < epochEndDate && epochDataDate >= epochTodaysDate){
-                    console.log('dataReturn', dataReturn)
+                  //  console.log('dataReturn', dataReturn)
+
+                    //weekDay = moment(dataReturn.date).format('dddd')
+                    weekDay = moment(dataReturn.date).format("dddd, MMMM Do")
                     showShifts()
                }
              }
@@ -66,14 +69,15 @@ $.ajax({
                }
 
 
-
           function showShifts(){
             var showShifts = ""+
-                "<div class='show-shifts'>"+
-                  "<div class='table-date'>"+dataReturn.date+"</div>" +
-                  "<div class='table-shift'>"+ dataReturn.shift+"</div>" +
-                  "<div class='table-time'>"+dataReturn.time+"</div>" +
-                "</div>"
+            "<div class='shiftsWrapper'>"+
+              "<div class='leftAside'><div class='shiftReturn'>"+dataReturn.shift+"</div></div>"+
+                "<div class='rightWrapper'>"+
+                    "<div class='leftTop'>"+weekDay+"</div>" +
+                  "<div class='leftBottom'>"+dataReturn.time+"</div>" +
+                "</div>"+
+            "</div>"
             $('#shift-results').append(showShifts)
           }
 

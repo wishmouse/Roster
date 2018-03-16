@@ -11,13 +11,47 @@ margin:10px;
 }
 
 .table-date{
-    margin: auto;
-    width: 24%;
+    /*margin: 0px 64px 0px 64px;*/
     padding: 10px;
     font-weight: bold;
 }
 
-.show-shifts{
-    border: 1px solid;
-    background: #D2EFEE;
+.shiftsWrapper{
+    border-top: 1px solid;
+    height: 55px;
+
+}
+
+.rightWrapper {
+    float:right;
+    width: 69%
+
+}
+.leftTop {
+    background-color: lightblue;
+    width: 88%;
+    padding-left:30px;
+    height: 27px;
+    border-bottom: 1px solid white
+}
+
+.leftBottom {
+    background-color: lightblue;
+    width: 88%;
+    padding-left:30px;
+    height: 27px;
+}
+
+.leftAside {
+    background-color: lightblue;
+    width: 30%;
+    height: 55px;
+    float:left;
+    border-right:1px solid white;
+        text-align: center;
+}
+
+.shiftReturn {
+      font-size: 30px;
+      padding-top: 8px;
 }

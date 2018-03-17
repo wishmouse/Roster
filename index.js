@@ -55,7 +55,7 @@ app.get('/shifts',  function(req, res){
       console.log("ooops there's an error retreiving data from Database: ", err)
     } else {
       var collection = db.collection("shifts")
-      collection.find({}).toArray(function(err, result){
+      collection.find({}).sort({dateEpoch: 1}).toArray(function(err, result){
         if (err){
           conosole.log("there is an error retreiving data from database: ", err)
           res.send(err)

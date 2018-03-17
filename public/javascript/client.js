@@ -23,7 +23,7 @@ var moment = require('moment');
                     }
                })
 
-
+/*
               var enteredDate = $('#date').val()
               console.log('enteredDate', enteredDate)
                var new_date = moment(enteredDate, "YYYY-MM-DD").add('days', 1);
@@ -38,7 +38,8 @@ var moment = require('moment');
 
               var d = $('#date').text(tomorrow)
                              console.log('tomorrow', tomorrow)
-       })
+                             */
+                                  })
 
 var today = new Date();
 var epochEndDate = today.setDate(today.getDate() + 12)
@@ -53,7 +54,7 @@ $.ajax({
                var dataDate = dataReturn.date
                var epochDataDate = dataReturn.dateEpoch
                var epochTodaysDate = new Date().valueOf()
-               
+
                currentDate()
                //console.log('dataReturn', dataReturn)
 

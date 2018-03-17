@@ -11,9 +11,6 @@ var moment = require('moment');
          date = $('#date').val()
          dateEpoch = new Date(date).valueOf()
          console.log('dateEpoch', dateEpoch)
-         //console.log(shift)
-         //console.log('time', time)
-         //console.log('date',date)
 
            $.ajax({
                   method: "POST",
@@ -26,10 +23,25 @@ var moment = require('moment');
                     }
                })
 
+
+              var enteredDate = $('#date').val()
+              console.log('enteredDate', enteredDate)
+               var new_date = moment(enteredDate, "YYYY-MM-DD").add('days', 1);
+              console.log('new_date', new_date)
+              var day = new_date.format('DD');
+              var month = new_date.format('MM');
+              var year = new_date.format('YYYY');
+
+               tomorrow = day+"/"+month+"/"+year
+
+              $('#date').val(tomorrow)
+
+              var d = $('#date').text(tomorrow)
+                             console.log('tomorrow', tomorrow)
        })
 
 var today = new Date();
-var epochEndDate = today.setDate(today.getDate() + 2)
+var epochEndDate = today.setDate(today.getDate() + 12)
 var formattedDate
 
 $.ajax({
@@ -41,19 +53,22 @@ $.ajax({
                var dataDate = dataReturn.date
                var epochDataDate = dataReturn.dateEpoch
                var epochTodaysDate = new Date().valueOf()
+               
                currentDate()
-              // console.log('epochEndDate', epochEndDate)
-              //console.log('epochDataDate', epochDataDate)
-               //console.log('dataDate', dataDate)
-               //console.log('formattedTodaysDate', formattedTodaysDate)
-               console.log('epochTodaysDate', epochTodaysDate)
+               //console.log('dataReturn', dataReturn)
 
                if(epochTodaysDate < epochEndDate && epochDataDate >= epochTodaysDate){
-                  //  console.log('dataReturn', dataReturn)
-
-                    //weekDay = moment(dataReturn.date).format('dddd')
+                 console.log('dataReturn', dataReturn)
                     weekDay = moment(dataReturn.date).format("dddd, MMMM Do")
-                    showShifts()
+                    var offDay = dataReturn.shift
+                    if(offDay == 'OFF'){
+                      console.log('off Day')
+                        showShiftsOff()
+                    }else{
+                        showShifts()
+                      }
+
+
                }
              }
            }
@@ -68,7 +83,17 @@ $.ajax({
                  formattedTodaysDate = year+"-"+month+"-"+day
                }
 
-
+               function showShiftsOff(){
+                 var showShifts = ""+
+                 "<div class='shiftsWrapper'>"+
+                   "<div class='leftAside day-off'><div class='shiftReturn'>"+dataReturn.shift+"</div></div>"+
+                     "<div class='rightWrapper'>"+
+                         "<div class='leftTop'>"+weekDay+"</div>" +
+                       "<div class='leftBottom'>"+dataReturn.time+"</div>" +
+                     "</div>"+
+                 "</div>"
+                 $('#shift-results').append(showShifts)
+               }
           function showShifts(){
             var showShifts = ""+
             "<div class='shiftsWrapper'>"+

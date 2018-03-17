@@ -17,41 +17,48 @@ margin:10px;
 }
 
 .shiftsWrapper{
-    border-top: 1px solid;
-    height: 55px;
-
+      border-bottom: 1px solid black;
+      height: 80px;
+      margin-bottom: 10px;
 }
 
 .rightWrapper {
-    float:right;
-    width: 69%
+    float: right;
+     width: 69%;
+     background: #EBEBEB;
+
 
 }
 .leftTop {
-    background-color: lightblue;
-    width: 88%;
-    padding-left:30px;
-    height: 27px;
-    border-bottom: 1px solid white
+  width: 88%;
+  padding-left: 30px;
+  padding-top: 19px;
 }
 
 .leftBottom {
-    background-color: lightblue;
-    width: 88%;
-    padding-left:30px;
-    height: 27px;
+  width: 88%;
+  padding-left: 30px;
+  height: 40px;
 }
 
 .leftAside {
-    background-color: lightblue;
-    width: 30%;
-    height: 55px;
-    float:left;
-    border-right:1px solid white;
-        text-align: center;
+  background-color: #D3D3D3;
+  width: 30%;
+  height: 79px;
+  float: left;
+  border: 1px solid #111;
+  text-align: center;
 }
 
 .shiftReturn {
-      font-size: 30px;
-      padding-top: 8px;
+  font-size: 24px;
+  padding-top: 22px;
+}
+
+.shift-result{
+  margin:15px;
+}
+
+.day-off{
+  background:#9eaec6;
 }

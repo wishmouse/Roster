@@ -72,6 +72,25 @@ app.get('/shifts',  function(req, res){
   })
 })
 
+app.get('/delete/:id',  function(req, res){
+  console.log(req.params)
+  var MongoClient = mongodb.MongoClient
+  var url = "mongodb://localhost:27017/shifts"
+  MongoClient.connect(url, function(err, db){
+    if (err){
+      console.log("ooops there's an error retreiving data from Database: ", err)
+    } else {
+      var collection = db.collection("shifts")
+      var ObjectId = require('mongodb').ObjectId;
+      var editId = req.params.id;
+      console.log('editId', editId)
+      var o_id = new ObjectId(editId);
+      console.log('o_id', o_id)
+      collection.remove({_id:o_id})
+        db.close()
+    }
+  })
+})
 
 app.listen(3000, function(){
   console.log("Danny boi  .... 3000")

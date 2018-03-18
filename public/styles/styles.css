@@ -26,20 +26,21 @@ margin:10px;
     float: right;
      width: 69%;
      background: #EBEBEB;
-
-
+     font-size: 19px;
 }
 .leftTop {
-  width: 88%;
+  width: 78%;
   padding-left: 30px;
-  padding-top: 19px;
+      padding-top: 15px;
 }
 
 .leftBottom {
-  width: 88%;
+  width: 78%;
   padding-left: 30px;
   height: 40px;
 }
+
+
 
 .leftAside {
   background-color: #D3D3D3;
@@ -49,6 +50,8 @@ margin:10px;
   border: 1px solid #111;
   text-align: center;
 }
+
+
 
 .shiftReturn {
   font-size: 24px;
@@ -61,4 +64,35 @@ margin:10px;
 
 .day-off{
   background:#9eaec6;
+}
+.delete-format{
+      background: #e2e6e0;
+      padding: 4px 0px 5px 11px;
+      margin-bottom: 7px;
+}
+
+.click-to-delete {
+  width: 65px;
+  height: 30px;
+  background: #b3beaf;
+}
+.column1 {
+  display: inline-block;
+  vertical-align: top;
+  width: 12%;
+}
+
+.column2 {
+  display: inline-block;
+  vertical-align: top;
+  width: 15%;
+  padding-top: 6px;
+  text-align: center;
+}
+.column3 {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  padding-top: 6px;
+
 }

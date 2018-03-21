@@ -17,8 +17,8 @@ if (screenWidth < 500){
          date = $('#date').val()
          dateEpoch = new Date(date).valueOf()
          week = moment(date).isoWeek();
-         weekNumber = weekNumber % 2
-         console.log(weekNumber)
+         weekNumber = week % 2
+         dayNumber = moment(date).day()
 
            $.ajax({
                   method: "POST",
@@ -28,11 +28,12 @@ if (screenWidth < 500){
                       time:time,
                       date:date,
                       dateEpoch:dateEpoch,
-                      weekNumber:weekNumber
+                      weekNumber:weekNumber,
+                      dayNumber:dayNumber
                     }
                })
-
-
+      })
+/*
               var enteredDate = $('#date').val()
               console.log('enteredDate', enteredDate)
                var new_date = moment(enteredDate, "YYYY-MM-DD").add('days', 1);
@@ -40,7 +41,8 @@ if (screenWidth < 500){
               var day = new_date.format('DD');
               var month = new_date.format('MM');
               var year = new_date.format('YYYY');
-                                  })
+*/
+
 
 var today = new Date();
 var epochEndDate = today.setDate(today.getDate() + 14)
@@ -61,21 +63,31 @@ $.ajax({
                     weekDay = moment(dataReturn.date).format("dddd, MMMM Do")
                     var offDay = dataReturn.shift
                     if(offDay == 'OFF'){
-                        showShiftsOff()
+                      showShiftsOff()
+                        //$('.leftAside').addClass(day-off)
                         if(dataReturn.weekNumber == 0){
                           $('.rightWrapper').css('background', '#ebf3e6')
+                          if (dataReturn.dayNumber == 3){
+                            console.log('Heeeeeere')
+                              $('.leftBottom').append('<img src="../styles/money.png" height="21" width="38" />')
+                              $('.leftBottom').css('padding-right', '13px')
+                          }
+
                         }
                     }else{
                         showShifts()
                         if(dataReturn.weekNumber == 0){
                           $('.rightWrapper').css('background', '#ebf3e6')
+                          if (dataReturn.dayNumber == 3){
+                              $('.leftBottom').append('<img src="../styles/money.png" height="21" width="38" class="image"/>')
+                              $('.leftBottom').css('padding-right', '13px')
+                          }
                         }
                       }
                }
              }
            }
          })
-
 
                function showShiftsOff(){
                  var showShifts = ""+

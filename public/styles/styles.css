@@ -31,7 +31,9 @@ margin:10px;
 .leftTop {
   width: 78%;
   padding-left: 30px;
-      padding-top: 15px;
+  padding-right: 30px;
+  padding-top: 15px;
+  font-size: 17px;
 }
 
 .leftBottom {
@@ -95,4 +97,8 @@ margin:10px;
   width: 30%;
   padding-top: 6px;
 
+}
+
+.image{
+  padding-left: 25px
 }

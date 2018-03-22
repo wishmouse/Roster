@@ -20,6 +20,7 @@ if (screenWidth < 500){
          weekNumber = week % 2
          dayNumber = moment(date).day()
 
+/*
            $.ajax({
                   method: "POST",
                   url: "/shifts",
@@ -31,22 +32,24 @@ if (screenWidth < 500){
                       weekNumber:weekNumber,
                       dayNumber:dayNumber
                     }
-               })
+               })*/
+
+               var enteredDate = $('#date').val()
+               console.log('enteredDate', enteredDate)
+                var new_date = moment(enteredDate, "YYYY-MM-DD").add('days', 1);
+               console.log('new_date', new_date)
+               var day = new_date.format('DD');
+               var month = new_date.format('MM');
+               var year = new_date.format('YYYY');
       })
-/*
-              var enteredDate = $('#date').val()
-              console.log('enteredDate', enteredDate)
-               var new_date = moment(enteredDate, "YYYY-MM-DD").add('days', 1);
-              console.log('new_date', new_date)
-              var day = new_date.format('DD');
-              var month = new_date.format('MM');
-              var year = new_date.format('YYYY');
-*/
+
+
+
 
 
 var today = new Date();
 var epochEndDate = today.setDate(today.getDate() + 14)
-var formattedDate
+
 
 $.ajax({
            url: "/shifts",
@@ -54,7 +57,7 @@ $.ajax({
              getData = JSON.parse(result)
              for(var i=0; i<getData.length; i++) {
                 dataReturn= getData[i]
-                console.log(dataReturn)
+                //console.log(dataReturn)
                var dataDate = dataReturn.date
                var epochDataDate = dataReturn.dateEpoch
                var epochTodaysDate = new Date(Date.now() - 86400000)
@@ -64,11 +67,9 @@ $.ajax({
                     var offDay = dataReturn.shift
                     if(offDay == 'OFF'){
                       showShiftsOff()
-                        //$('.leftAside').addClass(day-off)
                         if(dataReturn.weekNumber == 0){
                           $('.rightWrapper').css('background', '#ebf3e6')
                           if (dataReturn.dayNumber == 3){
-                            console.log('Heeeeeere')
                               $('.leftBottom').append('<img src="../styles/money.png" height="21" width="38" />')
                               $('.leftBottom').css('padding-right', '13px')
                           }

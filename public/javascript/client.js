@@ -11,6 +11,32 @@ if (screenWidth < 500){
   $('#go-to-one').hide()
 }
 
+
+function _today () {
+  var enteredDate = $('#date').val()
+  console.log('enteredDate', enteredDate)
+   var new_date = moment(enteredDate, "YYYY-MM-DD").add('days', 1);
+  //console.log('new_date', new_date)
+  var day = new_date.format('DD');
+  var month = new_date.format('MM');
+  var year = new_date.format('YYYY');
+  tomorrow1 =''
+  var tomorrow1 = day+'/'+month+'/'+year
+  var tomorrow2 = year+'-'+month+'-'+day
+ $('#date').val(new_date)
+}
+
+function tomorrow(){
+  var enteredDate = $('#date').val()
+  console.log('enteredDate', enteredDate)
+  var tomorrowsDate = enteredDate.add('days', 1);
+   var new_date = moment(enteredDate).format("YYYY-MM-DD")
+   //var tomorrowsDate = new_date.add('days', 1);
+   console.log('new_date', tomorrowsDate)
+   $('#date').val(tomorrowsDate);
+}
+
+
   $('.shift').click(function(e){
          shift = $(this).html()
          time = $(this).attr('value')
@@ -60,42 +86,61 @@ $.ajax({
                var epochTodaysDate = new Date(Date.now() - 86400000)
 
                if(epochDataDate >= epochTodaysDate){
-                    weekDay = moment(dataReturn.date).format("dddd, MMMM Do")
+                    weekDay = moment(dataReturn.date).format("ddd, MMMM Do")
                     var offDay = dataReturn.shift
                     if(offDay == 'OFF'){
                       showShiftsOff()
-                        //$('.leftAside').addClass(day-off)
-                        if(dataReturn.weekNumber == 0){
-                          $('.rightWrapper').css('background', '#ebf3e6')
-                          if (dataReturn.dayNumber == 3){
-                            console.log('Heeeeeere')
-                              $('.leftBottom').append('<img src="../styles/money.png" height="21" width="38" />')
-                              $('.leftBottom').css('padding-right', '13px')
-                          }
-
-                        }
+                      children()
+                    //  money()
                     }else{
                         showShifts()
-                        if(dataReturn.weekNumber == 0){
-                          $('.rightWrapper').css('background', '#ebf3e6')
-                          if (dataReturn.dayNumber == 3){
-                              $('.leftBottom').append('<img src="../styles/money.png" height="21" width="38" class="image"/>')
-                              $('.leftBottom').css('padding-right', '13px')
-                          }
+                        children()
+                      //  money()
                         }
-                      }
-               }
-             }
-           }
-         })
+            }
+          }
+        }
+    })
+function children(){
+   weekNum =   dataReturn.weekNumber
+    if(weekNum == '0'){
+      $("[title=0]").css("background-color", '#ebf3e6');
+      }
+}
+
+
+setTimeout(
+  function money(){
+  //var dayNum = dataReturn.dayNumber
+    //console.log(dayNum)
+  //  console.log(typeof dayNum)
+    //if (weekNum == '0' && dayNum == '3'){
+      //$("[title=3]").append('<img src="../styles/money.png" height="21" width="38" class="image"/>')
+      $("[title=3-0]").append('<img src="../styles/money.png" height="21" width="38" class="image"/>')
+      $("[title=3-0]").css('padding-right', '13px')
+  //  }
+  }, 5000);
+
+function money(){
+//var dayNum = dataReturn.dayNumber
+  //console.log(dayNum)
+//  console.log(typeof dayNum)
+  //if (weekNum == '0' && dayNum == '3'){
+    //$("[title=3]").append('<img src="../styles/money.png" height="21" width="38" class="image"/>')
+    $("[title=3-0]").addClass('money')
+    $("[title=3-0]").append('<img src="../styles/money.png" height="21" width="38" class="image"/>')
+    //('padding-right', '13px')
+//  }
+}
+
 
                function showShiftsOff(){
                  var showShifts = ""+
                  "<div class='shiftsWrapper'>"+
                    "<div class='leftAside day-off'><div class='shiftReturn'>"+dataReturn.shift+"</div></div>"+
-                     "<div class='rightWrapper'>"+
+                     "<div class='rightWrapper' title="+dataReturn.weekNumber+">"+
                          "<div class='leftTop'>"+weekDay+"</div>" +
-                         "<div class='leftBottom'>"+dataReturn.time+"</div>" +
+                         "<div class='leftBottom' title="+dataReturn.dayNumber+"-"+dataReturn.weekNumber+">"+dataReturn.time+"</div>" +
                      "</div>"+
                  "</div>"
                  $('#shift-results').append(showShifts)
@@ -104,13 +149,15 @@ $.ajax({
             var showShifts = ""+
             "<div class='shiftsWrapper'>"+
               "<div class='leftAside'><div class='shiftReturn'>"+dataReturn.shift+"</div></div>"+
-                "<div class='rightWrapper'>"+
+                "<div class='rightWrapper' title="+dataReturn.weekNumber+">"+
                     "<div class='leftTop'>"+weekDay+"</div>" +
-                  "<div class='leftBottom'>"+dataReturn.time+"</div>" +
+                  "<div class='leftBottom' title="+dataReturn.dayNumber+"-"+dataReturn.weekNumber+">"+dataReturn.time+"</div>" +
                 "</div>"+
             "</div>"
             $('#shift-results').append(showShifts)
           }
+
+
 
       $.ajax({
                  url: "/shifts",

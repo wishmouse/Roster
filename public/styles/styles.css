@@ -24,7 +24,7 @@ margin:10px;
 
 .rightWrapper {
     float: right;
-     width: 69%;
+     width: 77%;
      background: #EBEBEB;
      font-size: 19px;
 }
@@ -46,7 +46,7 @@ margin:10px;
 
 .leftAside {
   background-color: #D3D3D3;
-  width: 30%;
+  width: 22%;
   height: 79px;
   float: left;
   border: 1px solid #111;
@@ -101,4 +101,10 @@ margin:10px;
 
 .image{
   padding-left: 25px
+}
+
+.money{
+background: orange;
+border-radius: 30px;
+
 }

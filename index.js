@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 
 app.get('/', function(req, res){
-  res.render("main")
+  res.render("index")
 })
 
 
@@ -93,7 +93,7 @@ app.get('/delete/:id',  function(req, res){
 })
 
 app.listen(3000, function(){
-  console.log("Danny boi  .... 3000")
+  console.log("Danny boi  .... 3030")
 })
 
 module.exports = app

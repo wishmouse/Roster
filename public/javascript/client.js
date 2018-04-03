@@ -46,6 +46,7 @@ function tomorrow(){
          weekNumber = week % 2
          dayNumber = moment(date).day()
 
+/*
            $.ajax({
                   method: "POST",
                   url: "/shifts",
@@ -57,22 +58,24 @@ function tomorrow(){
                       weekNumber:weekNumber,
                       dayNumber:dayNumber
                     }
-               })
+               })*/
+
+               var enteredDate = $('#date').val()
+               console.log('enteredDate', enteredDate)
+                var new_date = moment(enteredDate, "YYYY-MM-DD").add('days', 1);
+               console.log('new_date', new_date)
+               var day = new_date.format('DD');
+               var month = new_date.format('MM');
+               var year = new_date.format('YYYY');
       })
-/*
-              var enteredDate = $('#date').val()
-              console.log('enteredDate', enteredDate)
-               var new_date = moment(enteredDate, "YYYY-MM-DD").add('days', 1);
-              console.log('new_date', new_date)
-              var day = new_date.format('DD');
-              var month = new_date.format('MM');
-              var year = new_date.format('YYYY');
-*/
+
+
+
 
 
 var today = new Date();
 var epochEndDate = today.setDate(today.getDate() + 14)
-var formattedDate
+
 
 $.ajax({
            url: "/shifts",
@@ -80,7 +83,7 @@ $.ajax({
              getData = JSON.parse(result)
              for(var i=0; i<getData.length; i++) {
                 dataReturn= getData[i]
-                console.log(dataReturn)
+                //console.log(dataReturn)
                var dataDate = dataReturn.date
                var epochDataDate = dataReturn.dateEpoch
                var epochTodaysDate = new Date(Date.now() - 86400000)
@@ -91,7 +94,7 @@ $.ajax({
                     if(offDay == 'OFF'){
                       showShiftsOff()
                       children()
-                    //  money()
+
                     }else{
                         showShifts()
                         children()
